@@ -1,0 +1,44 @@
+<html>
+<head>
+	<title>
+		Genetic Algorithm
+	</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+<div class="container">
+	<div class="display-4 text-center m-3">
+		Genetic Algorithm Based Pattern Finder
+	</div>
+
+	<form method="GET" class="text-center">
+		<input type="text" class="col-lg-6 form-control d-inline-flex mx-3" name="input_string" placeholder="Enter a string">
+		<div class="text-center d-inline-flex">
+			<button type="submit" class="btn btn-dark">Send</button>
+		</div>
+	</form>
+
+	{% if results %}
+	<table style="width:100%;" class="table table-bordered table-striped table-dark">
+		<tr>
+			<th scope="col" class="text-center">Iteration</th>
+			<th scope="col" class="text-center">Fitness</th>
+			<th scope="col" class="text-center">Gene</th>
+		</tr>
+		{% for result in results %}
+		<tr>
+			<td class="text-center">{{ result.0 }}</td>
+			<td class="text-center">{{ result.1 }}</td>
+			<td class="text-center">{{ result.2 }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% endif %}
+</div>
+
+</body>
+</html>

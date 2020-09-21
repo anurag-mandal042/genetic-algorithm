@@ -11,3 +11,7 @@ def index():
         input_string = request.args.get('input_string')
         results = genetic.main(input_string)
     return render_template('index.html', results=results)
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8000)

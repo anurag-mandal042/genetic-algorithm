@@ -1,44 +1,163 @@
 <html>
 <head>
-	<title>
-		Genetic Algorithm
-	</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>
+        Genetic Algorithm
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
 <div class="container">
-	<div class="display-4 text-center m-3">
-		Genetic Algorithm Based Pattern Finder
-	</div>
+    <div class="display-4 text-center m-3">
+        Genetic Algorithm Based Pattern Finder
+    </div>
 
-	<form method="GET" class="text-center">
-		<input type="text" class="col-lg-6 form-control d-inline-flex mx-3" name="input_string" placeholder="Enter a string">
-		<div class="text-center d-inline-flex">
-			<button type="submit" class="btn btn-dark">Send</button>
-		</div>
-	</form>
+    <form method="GET" class="text-center">
+        <input type="text" class="col-lg-6 form-control d-inline-flex mx-3" name="input_string"
+               placeholder="Enter a string">
+        <div class="text-center d-inline-flex">
+            <button type="submit" class="btn btn-dark">Send</button>
+        </div>
+    </form>
 
-	{% if results %}
-	<table style="width:100%;" class="table table-bordered table-striped table-dark">
-		<tr>
-			<th scope="col" class="text-center">Iteration</th>
-			<th scope="col" class="text-center">Fitness</th>
-			<th scope="col" class="text-center">Gene</th>
-		</tr>
-		{% for result in results %}
-		<tr>
-			<td class="text-center">{{ result.0 }}</td>
-			<td class="text-center">{{ result.1 }}</td>
-			<td class="text-center">{{ result.2 }}</td>
-		</tr>
-		{% endfor %}
-	</table>
-	{% endif %}
+    {% if results %}
+    <table style="width:100%;" class="table table-bordered table-striped table-dark">
+        <tr>
+            <th scope="col" class="text-center">Iteration</th>
+            <th scope="col" class="text-center">Fitness</th>
+            <th scope="col" class="text-center">Gene</th>
+        </tr>
+        {% for result in results %}
+        <tr>
+            <td class="text-center">{{ result.0 }}</td>
+            <td class="text-center">{{ result.1 }}</td>
+            <td class="text-center">{{ result.2 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
 </div>
+
+<div class="col-xl-8 col-xs-12 m-5 mx-auto">
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">LINE CHART</h6>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body mb-5 large">
+            <div class="chart-pie pt-4 pb-2 ">
+                <canvas id="areaChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var iterations = {{iterations}}
+    var fitness = {{ fitness }}
+
+    var ctx2 = document.getElementById('areaChart');
+    var myChart2 = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: iterations,
+            datasets: [{
+
+                label: 'Fitness',
+                data: fitness,
+                borderColor: [
+                    'rgba(23, 32, 42, 1)',
+                    'rgba(23, 32, 42, 1)',
+                    'rgba(23, 32, 42, 1)',
+                    'rgba(23, 32, 42, 1)',
+                    'rgba(23, 32, 42, 1)',
+                    'rgba(23, 32, 42, 1)',
+                    'rgba(23, 32, 42, 1)',
+                    'rgba(23, 32, 42, 1)',
+                    'rgba(23, 32, 42, 1)',
+                    'rgba(23, 32, 42, 1)',
+                    'rgba(23, 32, 42, 1)',
+                    'rgba(23, 32, 42, 1)',
+                    'rgba(23, 32, 42, 1)',
+                    'rgba(23, 32, 42, 1)',
+
+                ],
+                backgroundColor: [
+                    'rgba(231, 76, 60, 0)',
+                    'rgba(231, 76, 60, 0)',
+                    'rgba(231, 76, 60, 0)',
+                    'rgba(231, 76, 60, 0)',
+                    'rgba(231, 76, 60, 0)',
+                    'rgba(231, 76, 60, 0)',
+                    'rgba(231, 76, 60, 0)',
+                    'rgba(231, 76, 60, 0)',
+                    'rgba(231, 76, 60, 0)',
+                    'rgba(231, 76, 60, 0)',
+                    'rgba(231, 76, 60, 0)',
+                    'rgba(231, 76, 60, 0)',
+                    'rgba(231, 76, 60, 0)',
+                    'rgba(231, 76, 60, 0)',
+
+                ],
+                borderWidth: 3
+            }]
+        },
+        options: {
+            maintainAspectRatio: true,
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 0
+                }
+            },
+            title: {
+                display: true,
+                text: 'Generation v/s Fitness'
+            },
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: 'date'
+                    },
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 14
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        maxTicksLimit: 5,
+                        padding: 10,
+                    },
+                    gridLines: {
+                        color: "rgb(234, 236, 244)",
+                        zeroLineColor: "rgb(234, 236, 244)",
+                        drawBorder: false,
+                        borderDash: [2],
+                        zeroLineBorderDash: [2]
+                    }
+                }],
+            },
+            legend: {
+                display: true
+            },
+        }
+    });
+
+</script>
+
 
 </body>
 </html>

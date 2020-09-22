@@ -10,7 +10,10 @@ def index():
     if request.args.get('input_string'):
         input_string = request.args.get('input_string')
         results = genetic.main(input_string)
-    return render_template('index.html', results=results)
+        fitness = [result[1] for result in results]
+        iteration = [i for i in range(len(fitness))]
+
+    return render_template('index.html', results=results, fitness=fitness, iterations=iteration)
 
 
 if __name__ == '__main__':

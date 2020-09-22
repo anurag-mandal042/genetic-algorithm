@@ -30,7 +30,6 @@ def mate(population, buffer):
 
 
 def main(input_string):
-
     global TARGET
     TARGET = input_string  # computer
     ResultList = []
@@ -48,5 +47,4 @@ def main(input_string):
         mate(population, buffer)
         population, buffer = buffer, population
 
-    print(ResultList)
     return ResultList
